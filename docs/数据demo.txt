@@ -1,0 +1,148 @@
+{
+  "name": "张三",
+  "mobile_phone": "13355556666",
+  "gender": "男",
+  "client_birth": "19890102",
+  "client_birth_month_and_day": "02-24",
+  "age": 37,
+  "education": "大学本科",
+  "marital_status": "已婚",
+  "customer_id": "C1008620250303",
+  "customer_added_date": "20250102",
+  "customer_value": "A1类客户",
+  "customer_temperature": "低温",
+  "customer_segment_tag": "邻退小康",
+  "life_insurance_vip": "黄金",
+  "operation_stage": "新用户",
+  "pingan_vip": "是",
+  "is_life_insured": "仅投保人",
+  "stock_customer_type": "在职有效客户",
+  "life_insurance_product": "金越司庆版",
+  "held_product_type": "分红型",
+  "held_product_category": "意外上海保险",
+  "property_insurance_product": "车险",
+  "pension_insurance_product": "一年期综合意外保险",
+  "health_insurance": "e生保",
+  "life_liability_type": "寿险",
+  "life_design_type": "分红",
+  "target_purchase_category": "产险",
+  "annual_premium": 5000,
+  "total_coverage": "10万",
+  "latest_underwriting_time": "1年内",
+  "is_survival_gold_claimed": "是",
+  "is_payment_matured": "否",
+  "policy_anniversary": "2025-07-11",
+  "prospect_source": "综拓准客",
+  "held_cross_sell_category": "车辆交强险",
+  "vehicle_purchase_price": "10万以下",
+  "is_cross_sell_claim": "综拓理赔报案",
+  "policy_expiry_date": "3天内",
+  "valid_short_term_policy": "020",
+  "home_care_level": "居家潜客",
+  "health_care_level": "预达标会员",
+  "anyouhu_level": "国内版",
+  "zhenxiang_family_level": "预达标",
+  "investable_assets": "高净值",
+  "family_members": [
+    {
+      "relationship": "配偶",
+      "name": "李四",
+      "birth_date": "1990-05-20",
+      "mobile": "13344445555"
+    }
+  ],
+  "certificates": [
+    {
+      "id_type": "身份证",
+      "id_number": "11010119890102001X"
+    }
+  ],
+  "policies": [
+    {
+      "product_name": "平安e生保2023升级版",
+      "policy_id": "9200111115555555",
+      "effective_date": "20200711",
+      "status": "缴费有效",
+      "period_premium": 10000,
+      "due_date": "20260711",
+      "underwriting_conclusion": "次标（新契约）",
+      "free_look_expiry": "20200811",
+      "coverage_details": [
+        {
+          "name": "平安e生保医疗险",
+          "alias": "e生保",
+          "type": "主险",
+          "insured_person": "张三"
+        }
+      ],
+      "applicant_name": "张三",
+      "applicant_mobile": "13355556666",
+      "insured_name": "张三",
+      "insured_mobile": "13355556666",
+      "beneficiary_name": "李四",
+      "beneficiary_mobile": "13344445555",
+      "survival_total_amount": 0,
+      "survival_claimed_amount": 0,
+      "survival_unclaimed_amount": 0,
+      "universal_acct_transfer": 0,
+      "survival_interest_total": 0,
+      "claim_records": [
+        {
+          "time": "2023-11-15",
+          "case_id": "CL99887766",
+          "amount": 1500.5,
+          "coverage": "门诊医疗"
+        }
+      ]
+    }
+  ],
+  "benefits": {
+    "member_info": [
+      {
+        "level": "黄金V1",
+        "validity": "2026-12-31",
+        "points": 2000,
+        "premium_value": "200万",
+        "exclusive_service": "是",
+        "proxy_order_auth": "是",
+        "benefit_name": "门诊预约",
+        "benefit_intro": "门诊及时帮忙预约",
+        "points_cost": "300积分",
+        "benefit_url": "https://pingan.com/benefit/123"
+      }
+    ],
+    "pingan_info": [
+      {
+        "service_line": "居家养老",
+        "period": "2024年期",
+        "stage": "达标",
+        "service_level": "V1.5",
+        "benefit_name": "长寿管理",
+        "benefit_intro": "长寿健康时刻关注",
+        "expiry": "2024.01.01-2024.12.31",
+        "benefit_url": "https://pingan.com/service/456"
+      }
+    ]
+  },
+  "wechat_nickname": "阿三的小屋",
+  "email": "zhangsan@example.com",
+  "nationality": "中国",
+  "registered_residence": "北京市东城区",
+  "contact_address": "上海市浦东新区某街道123号",
+  "home_address": "上海市浦东新区某街道123号",
+  "height": "175cm",
+  "weight": "70kg",
+  "occupation": "程序员",
+  "years_in_service": "10",
+  "employer": "某某科技有限公司",
+  "work_phone": "021-88888888",
+  "department": "技术部",
+  "job_position": "高级开发工程师",
+  "company_address": "上海市张江高科技园区",
+  "annual_income": 300000,
+  "household_income": 500000,
+  "real_estate_status": "有房",
+  "asset_scale": "500-1000万",
+  "vehicle_model": "Model Y",
+  "vehicle_plate_number": "沪AD12345"
+}
