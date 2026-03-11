@@ -47,6 +47,7 @@
     {
       "relationship": "配偶",
       "name": "李四",
+      "age": 35,
       "birth_date": "1990-05-20",
       "mobile": "13344445555"
     }
@@ -144,5 +145,7 @@
   "real_estate_status": "有房",
   "asset_scale": "500-1000万",
   "vehicle_model": "Model Y",
-  "vehicle_plate_number": "沪AD12345"
+  "vehicle_plate_number": "沪AD12345",
+  "real_ vehicle_status": "有车",
+  "agent_id": "A000000"
 }

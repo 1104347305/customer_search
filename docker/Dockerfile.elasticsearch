@@ -1,0 +1,5 @@
+FROM docker.elastic.co/elasticsearch/elasticsearch:8.12.2
+
+# 复制并安装拼音分析插件
+COPY elasticsearch-analysis-pinyin-8.12.2.zip /tmp/
+RUN elasticsearch-plugin install --batch file:///tmp/elasticsearch-analysis-pinyin-8.12.2.zip

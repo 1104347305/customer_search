@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.0
+    build:
+      context: .
+      dockerfile: Dockerfile.elasticsearch
     container_name: customer_search_es
     environment:
       - discovery.type=single-node
