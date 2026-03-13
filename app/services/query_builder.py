@@ -109,11 +109,20 @@ class QueryBuilder:
 
         # 根据逻辑类型构建条件
         if query_logic == QueryLogicEnum.AND:
-            # AND逻辑：所有条件都必须满足
-            for condition in conditions:
-                clause = QueryBuilder._build_condition(condition)
-                if clause:
-                    query["bool"]["must"].append(clause)
+            # AND逻辑：需要将同一嵌套路径的条件合并
+            grouped_conditions = QueryBuilder._group_conditions_by_nested_path(conditions)
+
+            for path, conds in grouped_conditions.items():
+                if path:  # 嵌套字段
+                    # 将同一嵌套路径的多个条件合并到一个nested查询中
+                    nested_query = QueryBuilder._build_merged_nested_query(path, conds)
+                    if nested_query:
+                        query["bool"]["must"].append(nested_query)
+                else:  # 普通字段
+                    for condition in conds:
+                        clause = QueryBuilder._build_condition(condition)
+                        if clause:
+                            query["bool"]["must"].append(clause)
         else:
             # OR逻辑：任一条件满足即可
             should_clauses = []
@@ -132,6 +141,69 @@ class QueryBuilder:
 
         logger.debug(f"Built ES query: {query}")
         return query
+
+    @staticmethod
+    def _group_conditions_by_nested_path(conditions: List[Condition]) -> Dict[str, List[Condition]]:
+        """
+        将条件按嵌套路径分组
+
+        Args:
+            conditions: 条件列表
+
+        Returns:
+            {nested_path: [conditions]} 字典，None表示非嵌套字段
+        """
+        from collections import defaultdict
+        grouped = defaultdict(list)
+
+        for condition in conditions:
+            outer_path, _, _ = QueryBuilder._detect_nested(condition.field)
+            # 使用外层路径作为分组key（None表示非嵌套字段）
+            grouped[outer_path].append(condition)
+
+        return dict(grouped)
+
+    @staticmethod
+    def _build_merged_nested_query(nested_path: str, conditions: List[Condition]) -> Dict[str, Any]:
+        """
+        将多个针对同一嵌套路径的条件合并到一个nested查询中
+
+        Args:
+            nested_path: 嵌套路径（如 "family_members"）
+            conditions: 该路径下的所有条件
+
+        Returns:
+            合并后的nested查询
+        """
+        if not conditions:
+            return None
+
+        # 构建内部查询条件
+        inner_clauses = []
+        for condition in conditions:
+            # 构建叶子查询（不包装nested）
+            outer_path, inner_path, nested_field = QueryBuilder._detect_nested(condition.field)
+
+            if inner_path:
+                # 双层嵌套：暂不支持合并（保持原逻辑）
+                return None
+
+            # 构建叶子查询
+            full_field = f"{outer_path}.{nested_field}"
+            leaf_query = QueryBuilder._build_leaf_query(full_field, nested_field, condition.value)
+            inner_clauses.append(leaf_query)
+
+        # 将所有条件用AND组合在一个nested查询中
+        return {
+            "nested": {
+                "path": nested_path,
+                "query": {
+                    "bool": {
+                        "must": inner_clauses
+                    }
+                }
+            }
+        }
 
     @staticmethod
     def _build_condition(condition: Condition) -> Dict[str, Any]:

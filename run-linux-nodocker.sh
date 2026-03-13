@@ -28,8 +28,8 @@ else
 fi
 echo "[OK] Python: $($PYTHON --version) ($PYTHON)"
 
-# --- 检查端口是否已占用 ---
-if ss -tlnp 2>/dev/null | grep -q ":${PORT} " || lsof -i ":${PORT}" &>/dev/null; then
+# --- 检查端口是否已占用（仅检查 LISTEN 状态）---
+if ss -tlnp 2>/dev/null | grep -qE ":${PORT}[[:space:]]"; then
     echo "[ERROR] 端口 $PORT 已被占用。"
     echo "  请更换端口或执行: kill \$(lsof -ti :$PORT)"
     exit 1

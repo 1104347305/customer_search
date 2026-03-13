@@ -35,6 +35,17 @@ goto :python_ok
 :python_ok
 echo [OK] Python found: %PYTHON_CMD%
 
+rem --- Step 0: Install dependencies ---
+echo.
+echo Step 0: Installing Python dependencies...
+%PYTHON_CMD% -m pip install -r requirements.txt -q --user
+if %errorlevel% neq 0 (
+    echo [ERROR] Failed to install dependencies.
+    pause
+    exit /b 1
+)
+echo [OK] Dependencies ready.
+
 rem --- Check port ---
 netstat -ano 2>nul | findstr ":%PORT% " | findstr "LISTENING" >nul 2>&1
 if %errorlevel%==0 goto :port_busy
